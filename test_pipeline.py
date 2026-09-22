@@ -123,7 +123,7 @@ def test_engine_detects_anomalies_in_stream() -> None:
 
 def test_large_simulated_stream_stays_stable() -> None:
     """
-    Simulate \~2 M rows (conceptually multi-GB when stored as tick data).
+    Simulate ~2 M rows (conceptually multi-GB when stored as tick data).
     Verifies that the generator-based pipeline completes and reports
     sensible aggregate metrics without OOM.
     """
