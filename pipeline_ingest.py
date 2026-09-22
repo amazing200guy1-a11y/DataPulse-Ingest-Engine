@@ -1,8 +1,3 @@
----
-
-### 2. `pipeline_ingest.py`
-
-```python
 """
 DataPulse-Ingest-Engine — High-throughput chunked ingestion pipeline.
 
@@ -97,7 +92,7 @@ def sanitise_chunk(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
     spike_mask = rel_change > MAX_PRICE_SPIKE_RATIO
     # Keep the first row of the chunk (no previous) and drop clear spikes
     spike_mask = spike_mask.fillna(False)
-    mask &= \~spike_mask
+    mask &= ~spike_mask
 
     cleaned = df.loc[mask].copy()
     dropped = original_len - len(cleaned)
