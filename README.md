@@ -5,13 +5,11 @@
 ![Polars](https://img.shields.io/badge/Polars-Ready-CD7935?style=for-the-badge)
 ![Redis](https://img.shields.io/badge/Redis-Pub%2FSub-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![Pytest](https://img.shields.io/badge/Pytest-Async-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
 **High-throughput ingestion and sanitisation layer** designed for quantitative AI systems that must process multi-hundred-gigabyte tick streams without exhausting RAM.
 
 The engine streams raw market data in controlled blocks, applies deterministic anomaly filters, materialises clean vector-ready arrays, and hands off via Redis Pub/Sub to downstream C++/Rust execution kernels.
-
-> Live venue credentials, proprietary anomaly models and production Redis topology remain private.  
-> This repository is an architectural showcase of memory-safe big-data patterns for Lead / Staff ML Infrastructure roles.
 
 ---
 
@@ -89,7 +87,6 @@ DataPulse-Ingest-Engine/
 ├── pipeline_ingest.py      # Core chunked ingestion + sanitisation
 ├── test_pipeline.py        # pytest coverage with simulated large streams
 └── requirements.txt
-Attribution
-Architected by a Machine Learning Infrastructure & Big Data Architect.
-This repository demonstrates production-grade memory-safe pipelines for quantitative AI systems.
-Protected under proprietary guidelines. All rights reserved.
+## 👨‍💻 Author & Engineering Pedigree
+Architected and authored by Usman Abayomi Bamidele ([@amazing200guy1-a11y](https://github.com/amazing200guy1-a11y)).
+License: MIT Open Source.
