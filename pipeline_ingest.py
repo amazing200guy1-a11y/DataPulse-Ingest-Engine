@@ -200,6 +200,34 @@ class DataPulseIngestor:
 
 
 # ---------------------------------------------------------------------------
+# Adaptive Tick Sampler
+# ---------------------------------------------------------------------------
+
+class AdaptiveTickSampler:
+    """
+    Samples tick streams adaptively based on price delta and spread regimes.
+    Compresses tick archives during stationary drift while retaining microsecond
+    fidelity during volatility breakouts.
+    """
+
+    def __init__(self, min_delta_pips: float = 0.0001, volatility_multiplier: float = 1.5) -> None:
+        self.min_delta = min_delta_pips
+        self.vol_mult = volatility_multiplier
+        self._last_sampled_price: Optional[float] = None
+
+    def should_sample(self, current_price: float, spread: float = 0.0001) -> bool:
+        if self._last_sampled_price is None:
+            self._last_sampled_price = current_price
+            return True
+        diff = abs(current_price - self._last_sampled_price)
+        threshold = self.min_delta * (1.0 + (spread * self.vol_mult))
+        if diff >= threshold:
+            self._last_sampled_price = current_price
+            return True
+        return False
+
+
+# ---------------------------------------------------------------------------
 # Demo entry-point
 # ---------------------------------------------------------------------------
 

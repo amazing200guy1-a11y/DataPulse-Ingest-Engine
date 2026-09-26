@@ -148,3 +148,13 @@ def test_chunk_stats_are_emitted() -> None:
     assert stats.rows_in == 1_500
     assert stats.rows_out == 1_500
     assert stats.anomalies_dropped == 0
+
+
+def test_adaptive_tick_sampler_filters_insignificant_drift() -> None:
+    """Verifies that adaptive tick sampler compresses stationary drift and samples on breakout."""
+    from pipeline_ingest import AdaptiveTickSampler
+    sampler = AdaptiveTickSampler(min_delta_pips=0.0002)
+    assert sampler.should_sample(1.0850) is True
+    assert sampler.should_sample(1.08505) is False
+    assert sampler.should_sample(1.08530) is True
+
